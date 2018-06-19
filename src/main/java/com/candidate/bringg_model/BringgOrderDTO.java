@@ -1,18 +1,68 @@
 package com.candidate.bringg_model;
 
-import java.util.Date;
-
 public class BringgOrderDTO {
 
     String access_token;
-    Date timestamp;// => date('Y-m-d H:i:s'),
-	long company_id;// => <THE COMPANY ID>,
-    long customer_id;// => 2,
-    String title;// => "Pizza Delivery",
-    String address;// => "416 Water St. New York, NY 10002",
-    String scheduled_at;// => "2014-11-29T04:16:00-5",
-    long team_id;// => 4,
-    double lat;// => 45.5,
-    double lng;// => 12.5,
-    String inventory;// => '[{"id": 72407, "original_quantity":25, "quantity":0}, {"id": 72408, "original_quantity":20, "quantity":0}]',
+    String timestamp;
+	int company_id;
+    int customer_id;
+    String title;
+    String address;
+    String signature;
+
+    public String getAccess_token() {
+        return access_token;
+    }
+
+    public void setAccess_token(String access_token) {
+        this.access_token = access_token;
+    }
+
+    public String getTimestamp() {
+        return timestamp;
+    }
+
+    public void setTimestamp(String timestamp) {
+        this.timestamp = timestamp;
+    }
+
+    public int getCompany_id() {
+        return company_id;
+    }
+
+    public void setCompany_id(int company_id) {
+        this.company_id = company_id;
+    }
+
+    public int getCustomer_id() {
+        return customer_id;
+    }
+
+    public void setCustomer_id(int customer_id) {
+        this.customer_id = customer_id;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getSignature() {
+        return signature;
+    }
+
+    public void setSignature(String signature) {
+        this.signature = signature;
+    }
 }

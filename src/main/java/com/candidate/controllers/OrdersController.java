@@ -2,10 +2,13 @@ package com.candidate.controllers;
 
 import com.candidate.handlers.BringgOrderHandler;
 import com.candidate.model.OrderDTO;
+import com.candidate.model.OrderResponseDTO;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.concurrent.Callable;
 
@@ -17,16 +20,9 @@ public class OrdersController {
     BringgOrderHandler bringgOrderHandler;
 
     @PostMapping
-    @ResponseStatus(HttpStatus.CREATED)
-    public Callable<ResponseEntity<OrderDTO>> create(@RequestBody OrderDTO order) {
-        return () -> {
-            boolean handleSuccessful = bringgOrderHandler.handleOrder(order);
-            if (handleSuccessful){
-                return ResponseEntity.ok(order);
-            } else {
-                return ResponseEntity.badRequest().build();
-            }
-        };
+    public Callable<ResponseEntity<OrderResponseDTO>> create(@RequestBody OrderDTO order) {
+        return () -> ResponseEntity.ok(bringgOrderHandler.handleOrder(order));
+
     }
 
 }

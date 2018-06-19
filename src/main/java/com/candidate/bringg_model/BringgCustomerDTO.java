@@ -2,13 +2,14 @@ package com.candidate.bringg_model;
 
 public class BringgCustomerDTO {
 
-    private String signature;
     private String access_token;
-    private long timestamp;
+    private String timestamp;
+    private int id;
     private String name;
-    private long company_id;
+    private int company_id;
     private String phone;
     private String address;
+    private String signature;
 
     public String getSignature() {
         return signature;
@@ -26,11 +27,19 @@ public class BringgCustomerDTO {
         this.access_token = access_token;
     }
 
-    public long getTimestamp() {
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getTimestamp() {
         return timestamp;
     }
 
-    public void setTimestamp(long timestamp) {
+    public void setTimestamp(String timestamp) {
         this.timestamp = timestamp;
     }
 
@@ -46,7 +55,7 @@ public class BringgCustomerDTO {
         return company_id;
     }
 
-    public void setCompany_id(long company_id) {
+    public void setCompany_id(int company_id) {
         this.company_id = company_id;
     }
 

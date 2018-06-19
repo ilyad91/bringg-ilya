@@ -1,12 +1,14 @@
 package com.candidate.handlers;
 
 import com.candidate.bringg_model.BringgCustomerDTO;
+import com.candidate.bringg_model.BringgCustomerResponseDTO;
+import com.candidate.bringg_model.BringgOrderDTO;
+import com.candidate.bringg_model.BringgOrderResponseDTO;
 import com.candidate.model.OrderDTO;
+import com.candidate.model.OrderResponseDTO;
 import com.candidate.services.BringgService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.io.UnsupportedEncodingException;
 
 @Service
 public class BringgOrderHandler implements OrderHandler {
@@ -15,14 +17,20 @@ public class BringgOrderHandler implements OrderHandler {
     private BringgService bringgService;
 
     @Override
-    public boolean handleOrder(OrderDTO order){
-        BringgCustomerDTO bringgCustomerDTO = extractBringgCustomerDTO(order);
+    public OrderResponseDTO handleOrder(OrderDTO order) throws Exception{
+        OrderResponseDTO orderResponseDTO = new OrderResponseDTO();
+        orderResponseDTO.setOrder(order);
 
-        try {
-            return bringgService.createCustomer(bringgCustomerDTO);
-        } catch (UnsupportedEncodingException e) {
-            return false;
-        }
+        BringgCustomerDTO bringgCustomerDTO = extractBringgCustomerDTO(order);
+        BringgCustomerResponseDTO bringgCustomerResponseDTO = bringgService.createCustomer(bringgCustomerDTO);
+        int customerId = bringgCustomerResponseDTO.getBringgCustomerDTO().getId();
+
+        BringgOrderDTO bringgOrderDTO = new BringgOrderDTO();
+        bringgOrderDTO.setCustomer_id(customerId);
+        BringgOrderResponseDTO bringgOrderResponseDTO = bringgService.createOrder(bringgOrderDTO);
+
+        orderResponseDTO.setSuccess(true);
+        return orderResponseDTO;
     }
 
     private BringgCustomerDTO extractBringgCustomerDTO(OrderDTO orderDTO) {

@@ -1,12 +1,13 @@
 package com.candidate.handlers;
 
 import com.candidate.model.OrderDTO;
+import com.candidate.model.OrderResponseDTO;
 
 public interface OrderHandler {
 
     /**
      * @param order
-     * @return true on successful handling of the order, false otherwise
+     * @return response on successful handling of the order, null otherwise
      */
-    boolean handleOrder(OrderDTO order);
+    OrderResponseDTO handleOrder(OrderDTO order) throws Exception;
 }
