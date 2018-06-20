@@ -5,11 +5,9 @@ import com.candidate.model.OrderDTO;
 import com.candidate.model.OrderResponseDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.concurrent.Callable;
 
 @RestController
@@ -21,8 +19,11 @@ public class OrdersController {
 
     @PostMapping
     public Callable<ResponseEntity<OrderResponseDTO>> create(@RequestBody OrderDTO order) {
-        return () -> ResponseEntity.ok(bringgOrderHandler.handleOrder(order));
-
+        return () -> ResponseEntity.ok(bringgOrderHandler.createOrder(order));
     }
 
+    @GetMapping
+    public Callable<ResponseEntity<List<OrderDTO>>> getPassingWeekOrders() {
+        return () -> ResponseEntity.ok(bringgOrderHandler.getPastWeekOrders());
+    }
 }

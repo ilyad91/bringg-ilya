@@ -6,6 +6,7 @@ public class OrderDTO {
     private String cell_number;
     private String address;
     private String order_details;
+    private String created_at;
 
     public String getName() {
         return name;
@@ -37,5 +38,13 @@ public class OrderDTO {
 
     public void setOrder_details(String order_details) {
         this.order_details = order_details;
+    }
+
+    public String getCreated_at() {
+        return created_at;
+    }
+
+    public void setCreated_at(String created_at) {
+        this.created_at = created_at;
     }
 }
